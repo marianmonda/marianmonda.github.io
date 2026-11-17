@@ -34,7 +34,7 @@ export const translations = {
     experience: {
       number: '02.',
       title: 'Experiencia',
-      role: 'Buscando Prácticas Profesionales / Desarrollador Junior',
+      role: 'Buscando Prácticas / Desarrollador Junior',
       location: 'Almería / Remoto / Híbrido',
       duration: 'Disponibilidad inmediata',
       description:
@@ -255,7 +255,7 @@ export const translations = {
       titleLine1: "Let's build",
       titleLine2: 'something',
       description:
-        'Actively seeking professional internships. The fastest way to reach me is via email or by sending a direct message.',
+        'Actively seeking software engineering internships and junior opportunities. The fastest way to reach me is via email or by sending a direct message.',
       ctaButton: 'Send Message',
       copied: 'Copied to clipboard!',
       copyright: 'Marian Monda. Computer Engineering Student | Junior Developer.',

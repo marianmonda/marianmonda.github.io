@@ -35,7 +35,7 @@ export default function ContactSection({ t, onOpenModal }) {
         </h2>
 
         {/* Descripción */}
-        <p className="max-w-lg text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        <p className="max-w-lg sm:min-h-[5.25rem] text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
           {t.description}
         </p>
 
