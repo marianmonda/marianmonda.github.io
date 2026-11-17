@@ -20,12 +20,12 @@ export default function Experience({ t }) {
           <span className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3 h-3 rounded-full bg-emerald-500 ring-4 ring-white dark:ring-[#09090b]"></span>
 
           <div className="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white/50 dark:bg-zinc-900/40 space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
               <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-                <Briefcase size={18} className="text-emerald-500" />
+                <Briefcase size={18} className="text-emerald-500 shrink-0" />
                 {t.role}
               </h3>
-              <div className="flex items-center gap-4 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+              <div className="flex items-center gap-4 text-xs font-mono text-zinc-500 dark:text-zinc-400 shrink-0">
                 <span className="flex items-center gap-1">
                   <MapPin size={14} />
                   {t.location}

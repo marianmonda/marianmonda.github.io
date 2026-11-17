@@ -59,24 +59,24 @@ export default function HeroSection({ t, onOpenModal }) {
       onPointerMove={handlePointerMove}
       className="hero-canvas min-h-[100svh] border-b border-zinc-300/80 dark:border-zinc-700/80 flex flex-col justify-center items-center text-center w-full"
     >
-      <div className="space-y-6 w-full max-w-6xl mx-auto flex flex-col items-center">
-        <p className="hero-location text-xs sm:text-sm font-medium tracking-[0.14em] uppercase text-zinc-500 dark:text-zinc-400">
+      <div className="space-y-5 sm:space-y-6 w-full max-w-6xl mx-auto px-6 sm:px-10 md:px-12 flex flex-col items-center">
+        <p className="hero-location text-[11px] sm:text-sm font-medium tracking-[0.14em] uppercase text-zinc-500 dark:text-zinc-400 px-2">
           {t.location}
           <span className="mx-2 text-emerald-500" aria-hidden="true">·</span>
           <span className="text-emerald-600 dark:text-emerald-400">{t.availability}</span>
         </p>
 
         {/* Gran Título Nodal estilo OpenAI DevDay a pantalla completa */}
-        <div className="w-full my-3">
+        <div className="w-full my-2 sm:my-3 px-2 sm:px-4">
           <NodalTitle />
         </div>
 
         {/* Titular y Perfil Centrado */}
-        <div className="space-y-3 max-w-2xl mx-auto">
-          <h2 className="text-xl sm:text-2xl font-medium leading-tight text-zinc-600 dark:text-zinc-300">
+        <div className="space-y-3 max-w-2xl mx-auto px-2 sm:px-4">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-medium leading-snug text-zinc-600 dark:text-zinc-300">
             {t.headline}
           </h2>
-          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
+          <p className="text-sm sm:text-base md:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
             {t.profile}
           </p>
         </div>
@@ -92,13 +92,13 @@ export default function HeroSection({ t, onOpenModal }) {
           </a>
           <a
             href="#experience"
-            className="hero-action inline-flex items-center rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-all cursor-pointer"
+            className="hero-action inline-flex items-center rounded-full bg-white/95 dark:bg-zinc-900/95 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 shadow-xs transition-all cursor-pointer"
           >
             {t.ctaExperience}
           </a>
           <a
             href="#contact"
-            className="hero-action inline-flex items-center rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-all cursor-pointer"
+            className="hero-action inline-flex items-center rounded-full bg-white/95 dark:bg-zinc-900/95 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 shadow-xs transition-all cursor-pointer"
           >
             {t.ctaContact}
           </a>

@@ -41,19 +41,17 @@ export default function Skills({ t }) {
                   const logo = logoMap[skill];
                   return (
                     <span className={`skill-tool${logo ? '' : ' skill-tool--text'}`} key={skill}>
-                      <span className="skill-tool__logo">
-                        {logo ? (
+                      {logo && (
+                        <span className="skill-tool__logo">
                           <img
                             src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${logo[0]}/${logo[1]}`}
                             alt=""
                             width="30"
                             height="30"
-                            onError={(event) => { event.currentTarget.style.display = 'none'; }}
+                            onError={(event) => { event.currentTarget.parentElement.style.display = 'none'; }}
                           />
-                        ) : (
-                          <span aria-hidden="true">{skill.slice(0, 2).toUpperCase()}</span>
-                        )}
-                      </span>
+                        </span>
+                      )}
                       {skill}
                     </span>
                   );

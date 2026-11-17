@@ -5,7 +5,7 @@ export default function ContactSection({ t, onOpenModal }) {
   return (
     <section id="contact" className="contact-section py-20 text-center">
       <div className="max-w-2xl mx-auto space-y-6">
-        <span className="font-mono text-emerald-600 dark:text-emerald-400 text-xs tracking-wider uppercase">
+        <span className="inline-block font-mono text-emerald-600 dark:text-emerald-400 text-sm sm:text-base font-medium tracking-wider uppercase">
           {t.number}
         </span>
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">

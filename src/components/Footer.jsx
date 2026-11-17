@@ -4,7 +4,7 @@ import { GithubIcon, LinkedinIcon } from './Icons';
 
 export default function Footer({ t, onOpenModal }) {
   return (
-    <footer className="footer-shell py-10">
+    <footer className="footer-shell py-10 px-6">
       <div className="max-w-2xl mx-auto flex flex-col items-center gap-4 text-xs text-zinc-500 dark:text-zinc-500 font-mono text-center">
           <div className="flex items-center gap-4 text-zinc-600 dark:text-zinc-400">
             <a

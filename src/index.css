@@ -65,6 +65,7 @@
 }
 
 .site-bar__links {
+  display: flex;
   align-items: center;
   gap: 0.25rem;
 }
@@ -95,8 +96,14 @@
 .site-bar__controls {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 0.75rem;
   margin-left: 0.5rem;
+}
+
+.site-bar__quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .site-bar__cv {
@@ -115,9 +122,18 @@
 }
 
 .site-bar__cv:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 2px 2px 0 rgba(24, 24, 27, 0.7);
+  transform: translate(-3px, -3px);
+  box-shadow:
+    1px 1px 0 #18181b,
+    2px 2px 0 #18181b,
+    3px 3px 0 #18181b,
+    4px 4px 0 #18181b;
   background: #34d399;
+}
+
+.site-bar__cv:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 transparent;
 }
 
 .site-bar__language,
@@ -144,6 +160,65 @@
   width: 46px;
   height: 46px;
   border-radius: 8px;
+}
+
+.site-bar__theme.site-bar__menu-btn {
+  display: none;
+}
+
+.site-bar__dropdown {
+  position: absolute;
+  top: 68px;
+  left: 0;
+  right: 0;
+  padding: 1rem clamp(1.25rem, 5vw, 5rem) 1.25rem;
+  background: rgba(250, 250, 250, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid rgba(24, 24, 27, 0.18);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.12);
+  animation: dropdown-enter 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes dropdown-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.site-bar__dropdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.site-bar__dropdown-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  color: #3f3f46;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 150ms ease, background 150ms ease, transform 150ms ease;
+}
+
+.site-bar__dropdown-link:hover {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  transform: translateX(4px);
+}
+
+.site-bar__dropdown-controls {
+  display: none;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(24, 24, 27, 0.14);
 }
 
 .hero-canvas {
@@ -189,12 +264,22 @@
 .site-bar__language:hover,
 .site-bar__theme:hover {
   background: #fff;
-  transform: translate(-1px, -1px);
-  box-shadow: 2px 2px 0 rgba(24, 24, 27, 0.55);
+  transform: translate(-3px, -3px);
+  box-shadow:
+    1px 1px 0 #3f3f46,
+    2px 2px 0 #3f3f46,
+    3px 3px 0 #3f3f46,
+    4px 4px 0 #3f3f46;
+}
+
+.site-bar__language:active,
+.site-bar__theme:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 transparent;
 }
 
 .content-frame {
-  --content-gutter: clamp(1rem, 5vw, 5rem);
+  --content-gutter: clamp(1.5rem, 6vw, 5rem);
   padding-inline: var(--content-gutter);
 }
 
@@ -293,6 +378,10 @@
   transform: translateY(-2px);
 }
 
+.skill-tool--text {
+  padding-left: 0.85rem;
+}
+
 .skill-tool__logo {
   position: relative;
   display: grid;
@@ -367,9 +456,61 @@
   color: #d4d4d8;
 }
 
+:where(.dark) .site-bar__language:hover,
+:where(.dark) .site-bar__theme:hover {
+  background: #27272a;
+  color: #f4f4f5;
+  transform: translate(-3px, -3px);
+  box-shadow:
+    1px 1px 0 #34d399,
+    2px 2px 0 #34d399,
+    3px 3px 0 #34d399,
+    4px 4px 0 #34d399;
+}
+
+:where(.dark) .site-bar__language:active,
+:where(.dark) .site-bar__theme:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 transparent;
+}
+
 :where(.dark) .site-bar__cv {
   border-color: rgba(244, 244, 245, 0.35);
   background: #34d399;
+}
+
+:where(.dark) .site-bar__cv:hover {
+  background: #6ee7b7;
+  transform: translate(-3px, -3px);
+  box-shadow:
+    1px 1px 0 #71717a,
+    2px 2px 0 #71717a,
+    3px 3px 0 #71717a,
+    4px 4px 0 #71717a;
+}
+
+:where(.dark) .site-bar__cv:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 transparent;
+}
+
+:where(.dark) .site-bar__dropdown {
+  background: rgba(9, 9, 11, 0.96);
+  border-bottom-color: rgba(244, 244, 245, 0.2);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.5);
+}
+
+:where(.dark) .site-bar__dropdown-link {
+  color: #d4d4d8;
+}
+
+:where(.dark) .site-bar__dropdown-link:hover {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+}
+
+:where(.dark) .site-bar__dropdown-controls {
+  border-top-color: rgba(244, 244, 245, 0.16);
 }
 
 .footer-shell {
@@ -380,8 +521,30 @@
   border-top-color: rgba(244, 244, 245, 0.18);
 }
 
-@media (max-width: 767px) {
-  .site-bar__controls { margin-left: auto; }
+@media (min-width: 980px) {
+  .site-bar__dropdown {
+    display: none;
+  }
+}
+
+/* 1er escalón: al empezar a empequeñecer, se quitan primero los marcadores */
+@media (max-width: 979px) {
+  .site-bar__links {
+    display: none;
+  }
+  .site-bar__theme.site-bar__menu-btn {
+    display: grid;
+  }
+}
+
+/* 2º escalón: en ventana pequeña, se quitan CV, idioma y tema de la barra y pasan al desplegable */
+@media (max-width: 600px) {
+  .site-bar__quick-actions {
+    display: none;
+  }
+  .site-bar__dropdown-controls {
+    display: flex;
+  }
 }
 
 .hero-canvas {

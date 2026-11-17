@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 const letters = [
@@ -83,9 +83,11 @@ function getPathNodes(path, nodes) {
   return points;
 }
 
-function InteractivePath({ char, path, nodes, color, transform, extractNodes = true }) {
+function InteractivePath({ index, path, nodes, color, transform, extractNodes = true, registerTrigger }) {
   const groupRef = useRef(null);
   const timelineRef = useRef(null);
+  const timeoutRef = useRef(null);
+  const isHoveredRef = useRef(false);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -97,37 +99,81 @@ function InteractivePath({ char, path, nodes, color, transform, extractNodes = t
         transformOrigin: 'center center',
       });
       timelineRef.current = gsap.timeline({ paused: true })
-        .to('.name-fill', { opacity: 0, duration: 0.38, ease: 'power2.out' }, 0)
-        .to('.name-stroke', { opacity: 1, duration: 0.38, ease: 'power2.out' }, 0)
+        .to('.name-fill', { opacity: 0, duration: 0.18, ease: 'power2.out' }, 0)
+        .to('.name-stroke', { opacity: 1, duration: 0.18, ease: 'power2.out' }, 0)
         .to('.name-node circle', {
           scale: 1,
           opacity: 1,
-          duration: 0.3,
-          stagger: { each: 0.045, from: 'random' },
-          ease: 'back.out(2)',
+          duration: 0.22,
+          stagger: { each: 0.02, from: 'random' },
+          ease: 'back.out(2.2)',
           transformOrigin: 'center center',
-        }, 0.02);
+        }, 0.01);
     }, groupRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, []);
 
-  const showOutline = () => timelineRef.current?.play();
-  const hideOutline = () => timelineRef.current?.reverse();
+  useEffect(() => {
+    if (!registerTrigger) return;
+    registerTrigger(index, (holdMs = 1100) => {
+      if (isHoveredRef.current) return;
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timelineRef.current?.timeScale(1.6).play();
+      timeoutRef.current = setTimeout(() => {
+        if (!isHoveredRef.current) {
+          timelineRef.current?.timeScale(0.65).reverse();
+        }
+      }, holdMs);
+    });
+  }, [index, registerTrigger]);
+
+  const handlePointerEnter = () => {
+    isHoveredRef.current = true;
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    // Activación instantánea y enérgica
+    timelineRef.current?.timeScale(1.6).play();
+  };
+
+  const handlePointerLeave = () => {
+    isHoveredRef.current = false;
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    timeoutRef.current = setTimeout(() => {
+      if (!isHoveredRef.current) {
+        timelineRef.current?.timeScale(0.65).reverse();
+      }
+    }, 100);
+  };
 
   return (
     <g
       ref={groupRef}
       className={color}
       transform={transform}
-      onMouseEnter={showOutline}
-      onMouseLeave={hideOutline}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+      style={{ cursor: 'pointer' }}
     >
-      <path className="name-fill" d={path} fill="currentColor" />
+      {/* Área interactiva ampliada para captura instantánea */}
+      <path
+        d={path}
+        fill="transparent"
+        stroke="transparent"
+        strokeWidth="10"
+        style={{ pointerEvents: 'all' }}
+      />
+      <path className="name-fill" d={path} fill="currentColor" style={{ pointerEvents: 'all' }} />
       <path className="name-stroke" d={path} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       <g className="name-node" fill="currentColor">
-        {(extractNodes ? getPathNodes(path, nodes) : nodes).map(([x, y], index) => (
-          <circle key={index} cx={x} cy={y} r="2.2" />
+        {(extractNodes ? getPathNodes(path, nodes) : nodes).map(([x, y], nodeIndex) => (
+          <circle key={nodeIndex} cx={x} cy={y} r="2.2" />
         ))}
       </g>
     </g>
@@ -135,17 +181,85 @@ function InteractivePath({ char, path, nodes, color, transform, extractNodes = t
 }
 
 export default function NameMark({ className = '' }) {
+  const triggersRef = useRef([]);
+
+  useEffect(() => {
+    const state = {
+      randomTimer: null,
+      secondaryTimer: null,
+      lastIndex: -1,
+    };
+
+    const isSmallOrTouch = () =>
+      window.innerWidth < 980 || window.matchMedia('(hover: none)').matches;
+
+    const scheduleNext = () => {
+      if (!isSmallOrTouch()) return;
+
+      // Intervalo aleatorio entre 650ms y 1450ms
+      const delay = 650 + Math.random() * 800;
+      state.randomTimer = window.setTimeout(() => {
+        if (isSmallOrTouch() && triggersRef.current.length > 0) {
+          let nextIndex = Math.floor(Math.random() * letters.length);
+          if (nextIndex === state.lastIndex) {
+            nextIndex = (nextIndex + 1) % letters.length;
+          }
+          state.lastIndex = nextIndex;
+
+          const holdDuration = 950 + Math.random() * 550;
+          triggersRef.current[nextIndex]?.(holdDuration);
+
+          // Ocasionalmente (~35% de las veces) activa una segunda letra cercana tras un breve desfase
+          if (Math.random() < 0.35) {
+            const secondIndex = (nextIndex + 1 + Math.floor(Math.random() * (letters.length - 2))) % letters.length;
+            state.secondaryTimer = window.setTimeout(() => {
+              if (isSmallOrTouch()) {
+                triggersRef.current[secondIndex]?.(holdDuration * 0.9);
+              }
+            }, 180);
+          }
+        }
+        scheduleNext();
+      }, delay);
+    };
+
+    const handleResize = () => {
+      window.clearTimeout(state.randomTimer);
+      window.clearTimeout(state.secondaryTimer);
+      if (isSmallOrTouch()) {
+        scheduleNext();
+      }
+    };
+
+    if (isSmallOrTouch()) {
+      scheduleNext();
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.clearTimeout(state.randomTimer);
+      window.clearTimeout(state.secondaryTimer);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const registerTrigger = (index, fn) => {
+    triggersRef.current[index] = fn;
+  };
+
   return (
     <svg
       viewBox="0 0 344 165"
-      className={`name-mark w-full max-w-[680px] h-auto overflow-visible select-none ${className}`}
+      className={`name-mark w-[88%] sm:w-[92%] md:w-full max-w-[680px] mx-auto h-auto overflow-visible select-none ${className}`}
       role="img"
       aria-label="Marian Monda"
     >
       {letters.map((letter, index) => (
         <InteractivePath
           key={`${letter.char}-${index}`}
+          index={index}
           {...letter}
+          registerTrigger={registerTrigger}
           extractNodes={letter.char !== 'O'}
           transform={index >= 6 ? 'translate(0 -28)' : undefined}
         />
