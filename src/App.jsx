@@ -5,6 +5,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import ContactSection from './components/ContactSection';
+import ContactModal from './components/ContactModal';
 import Footer from './components/Footer';
 import { translations } from './data/translations';
 
@@ -17,6 +18,9 @@ export default function App() {
     }
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
+
+  // Estado Modal de Contacto
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   // Estado Idioma (ES / EN)
   const [language, setLanguage] = useState(() => {
@@ -77,17 +81,24 @@ export default function App() {
 
       {/* Contenido principal estructurado */}
       <main className={`flex-1 w-full language-transition language-transition--${languagePhase}`}>
-        <HeroSection t={t.hero} />
+        <HeroSection t={t.hero} onOpenModal={() => setIsContactModalOpen(true)} />
         <div className="content-frame">
           <Experience t={t.experience} />
           <Projects t={t.projects} />
           <Skills t={t.skills} />
-          <ContactSection t={t.footer} />
+          <ContactSection t={t.footer} onOpenModal={() => setIsContactModalOpen(true)} />
         </div>
       </main>
 
       {/* Footer y sección de contacto */}
-      <Footer t={t.footer} />
+      <Footer t={t.footer} onOpenModal={() => setIsContactModalOpen(true)} />
+
+      {/* Modal flotante de contacto */}
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        t={t.contactModal}
+      />
     </div>
   );
 }

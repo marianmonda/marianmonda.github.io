@@ -2,6 +2,7 @@ import React from 'react';
 
 const logoMap = {
   JavaScript: ['javascript', 'javascript-original.svg'],
+  Python: ['python', 'python-original.svg'],
   'C#': ['csharp', 'csharp-original.svg'],
   PHP: ['php', 'php-original.svg'],
   SQL: ['postgresql', 'postgresql-original.svg'],
@@ -12,8 +13,6 @@ const logoMap = {
   'Node.js': ['nodejs', 'nodejs-original.svg'],
   MySQL: ['mysql', 'mysql-original.svg'],
   PostgreSQL: ['postgresql', 'postgresql-original.svg'],
-  'SQL Server': ['microsoftsqlserver', 'microsoftsqlserver-plain.svg'],
-  Redis: ['redis', 'redis-original.svg'],
   Docker: ['docker', 'docker-original.svg'],
   'Git & GitHub': ['github', 'github-original.svg'],
   Vite: ['vite', 'vite-original.svg'],

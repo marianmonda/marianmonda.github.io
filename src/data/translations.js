@@ -72,7 +72,7 @@ export const translations = {
       categories: [
         {
           title: 'Lenguajes',
-          skills: ['JavaScript', 'C#', 'PHP', 'SQL'],
+          skills: ['JavaScript', 'Python', 'C#', 'PHP', 'SQL'],
         },
         {
           title: 'Frameworks',
@@ -80,7 +80,7 @@ export const translations = {
         },
         {
           title: 'Bases de datos',
-          skills: ['MySQL', 'PostgreSQL', 'SQL Server', 'Redis'],
+          skills: ['MySQL', 'PostgreSQL'],
         },
         {
           title: 'Herramientas',
@@ -99,6 +99,30 @@ export const translations = {
         'En búsqueda activa de prácticas profesionales. Si tienes una propuesta, una consulta técnica o simplemente quieres conectar, estaré encantado de hablar.',
       ctaButton: 'Enviar mensaje',
       copyright: 'Marian Monda. Estudiante de Ingeniería Informática | Desarrollador Junior.',
+    },
+    contactModal: {
+      title: 'Envíame un mensaje',
+      description:
+        '¿Tienes una propuesta de prácticas, un proyecto o alguna consulta? Rellena este formulario y te responderé lo antes posible.',
+      nameLabel: 'Nombre completo',
+      namePlaceholder: 'Tu nombre o el de tu empresa',
+      emailLabel: 'Correo electrónico',
+      emailPlaceholder: 'tu@email.com',
+      subjectLabel: 'Asunto',
+      subjectPlaceholder: 'Propuesta de prácticas / Colaboración / Consulta...',
+      messageLabel: 'Mensaje',
+      messagePlaceholder: 'Cuéntame brevemente en qué puedo ayudarte...',
+      submitButton: 'Enviar mensaje',
+      submitting: 'Enviando...',
+      copyEmail: 'Copiar email',
+      copied: '¡Copiado!',
+      directEmailText: 'O si prefieres escribir directamente:',
+      successTitle: '¡Mensaje enviado con éxito!',
+      successDesc: 'Gracias por ponerte en contacto. He recibido tu mensaje y te responderé a tu correo lo antes posible.',
+      errorTitle: 'Error al enviar',
+      errorDesc: 'No se pudo enviar el mensaje en este momento. Por favor, inténtalo de nuevo o escríbeme directamente a mi correo.',
+      close: 'Cerrar',
+      sendAnother: 'Enviar otro mensaje',
     },
   },
   en: {
@@ -174,7 +198,7 @@ export const translations = {
       categories: [
         {
           title: 'Languages',
-          skills: ['JavaScript', 'C#', 'PHP', 'SQL'],
+          skills: ['JavaScript', 'Python', 'C#', 'PHP', 'SQL'],
         },
         {
           title: 'Frameworks',
@@ -182,7 +206,7 @@ export const translations = {
         },
         {
           title: 'Databases',
-          skills: ['MySQL', 'PostgreSQL', 'SQL Server', 'Redis'],
+          skills: ['MySQL', 'PostgreSQL'],
         },
         {
           title: 'Tools',
@@ -201,6 +225,30 @@ export const translations = {
         'Actively seeking professional internships. Whether you have an opportunity, a technical question, or just want to connect, feel free to reach out.',
       ctaButton: 'Send Message',
       copyright: 'Marian Monda. Computer Engineering Student | Junior Developer.',
+    },
+    contactModal: {
+      title: 'Send me a message',
+      description:
+        'Have an internship opportunity, a project, or a question? Fill out this form and I will get back to you as soon as possible.',
+      nameLabel: 'Full name',
+      namePlaceholder: 'Your name or company',
+      emailLabel: 'Email address',
+      emailPlaceholder: 'you@email.com',
+      subjectLabel: 'Subject',
+      subjectPlaceholder: 'Internship opportunity / Collaboration / Question...',
+      messageLabel: 'Message',
+      messagePlaceholder: 'Briefly tell me what you need or want to discuss...',
+      submitButton: 'Send message',
+      submitting: 'Sending...',
+      copyEmail: 'Copy email',
+      copied: 'Copied!',
+      directEmailText: 'Or if you prefer to email directly:',
+      successTitle: 'Message sent successfully!',
+      successDesc: 'Thank you for reaching out. I have received your message and will reply to your email as soon as possible.',
+      errorTitle: 'Submission error',
+      errorDesc: 'Could not send the message at this time. Please try again or write directly to my email address.',
+      close: 'Close',
+      sendAnother: 'Send another message',
     },
   },
 };

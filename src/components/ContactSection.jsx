@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mail } from 'lucide-react';
 
-export default function ContactSection({ t }) {
+export default function ContactSection({ t, onOpenModal }) {
   return (
     <section id="contact" className="contact-section py-20 text-center">
       <div className="max-w-2xl mx-auto space-y-6">
@@ -15,13 +15,14 @@ export default function ContactSection({ t }) {
           {t.description}
         </p>
         <div className="pt-2">
-          <a
-            href="mailto:marianimonda@gmail.com"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium text-sm hover:bg-zinc-800 dark:hover:bg-white transition-all shadow-sm"
+          <button
+            type="button"
+            onClick={onOpenModal}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium text-sm hover:bg-zinc-800 dark:hover:bg-white transition-all shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
           >
             <Mail size={16} />
             {t.ctaButton}
-          </a>
+          </button>
         </div>
       </div>
     </section>

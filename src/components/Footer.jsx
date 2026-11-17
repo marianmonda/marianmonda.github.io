@@ -1,7 +1,8 @@
 import React from 'react';
+import { Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
-export default function Footer({ t }) {
+export default function Footer({ t, onOpenModal }) {
   return (
     <footer className="footer-shell py-10">
       <div className="max-w-2xl mx-auto flex flex-col items-center gap-4 text-xs text-zinc-500 dark:text-zinc-500 font-mono text-center">
@@ -16,7 +17,7 @@ export default function Footer({ t }) {
               <GithubIcon size={18} />
             </a>
             <a
-              href="https://linkedin.com/in/marianmonda"
+              href="https://www.linkedin.com/in/marianmonda/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-emerald-500 transition-colors"
@@ -24,6 +25,14 @@ export default function Footer({ t }) {
             >
               <LinkedinIcon size={18} />
             </a>
+            <button
+              type="button"
+              onClick={onOpenModal}
+              className="hover:text-emerald-500 transition-colors cursor-pointer"
+              aria-label="Email"
+            >
+              <Mail size={18} />
+            </button>
           </div>
           <p>© {new Date().getFullYear()} {t.copyright}</p>
       </div>

@@ -3,7 +3,7 @@ import { Mail, ArrowUpRight } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import NodalTitle from './NodalTitle';
 
-export default function HeroSection({ t }) {
+export default function HeroSection({ t, onOpenModal }) {
   const heroRef = useRef(null);
   const pointerTarget = useRef({ x: 0, y: 0 });
   const pointerPosition = useRef({ x: 0, y: 0 });
@@ -116,7 +116,7 @@ export default function HeroSection({ t }) {
             <GithubIcon size={20} />
           </a>
           <a
-            href="https://linkedin.com/in/marianmonda"
+            href="https://www.linkedin.com/in/marianmonda/"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors"
@@ -124,13 +124,14 @@ export default function HeroSection({ t }) {
           >
             <LinkedinIcon size={20} />
           </a>
-          <a
-            href="mailto:marianimonda@gmail.com"
-            className="p-2.5 rounded-full hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors"
+          <button
+            type="button"
+            onClick={onOpenModal}
+            className="p-2.5 rounded-full hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors cursor-pointer"
             aria-label="Email"
           >
             <Mail size={20} />
-          </a>
+          </button>
         </div>
       </div>
     </section>
