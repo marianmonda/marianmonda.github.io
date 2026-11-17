@@ -78,17 +78,8 @@ export default function Navbar({ darkMode, setDarkMode, language, setLanguage, t
           </ul>
 
           <div className="site-bar__controls">
-            {/* 2. Controles de CV, Idioma y Tema (se ocultan al final en ventana pequeña <= 600px) */}
+            {/* 2. Controles de Idioma, Tema y CV a la derecha del todo (se ocultan al final en ventana pequeña <= 600px) */}
             <div className="site-bar__quick-actions">
-              <a
-                href="/MarianMonda_Resume.pdf"
-                download
-                className="site-bar__cv"
-              >
-                <span>{t.cv}</span>
-                <Download size={15} aria-hidden="true" />
-              </a>
-
               {/* Botón Selector de Idioma ES / EN */}
               <button
                 onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
@@ -112,6 +103,16 @@ export default function Navbar({ darkMode, setDarkMode, language, setLanguage, t
               >
                 {darkMode ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} />}
               </button>
+
+              {/* Botón CV a la derecha del todo */}
+              <a
+                href="/MarianMonda_Resume.pdf"
+                download
+                className="site-bar__cv"
+              >
+                <span>{t.cv}</span>
+                <Download size={15} aria-hidden="true" />
+              </a>
             </div>
 
             {/* Botón Menú Desplegable (oculto en escritorio >= 980px) */}

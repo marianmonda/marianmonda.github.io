@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Mail, ArrowUpRight } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import NodalTitle from './NodalTitle';
@@ -9,6 +9,25 @@ export default function HeroSection({ t, onOpenModal }) {
   const pointerPosition = useRef({ x: 0, y: 0 });
   const driftPosition = useRef({ x: 0, y: 0 });
   const frameRef = useRef(null);
+  const [localTime, setLocalTime] = useState('');
+
+  useEffect(() => {
+    const formatter = new Intl.DateTimeFormat('es-ES', {
+      timeZone: 'Europe/Madrid',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    });
+
+    const updateClock = () => {
+      setLocalTime(formatter.format(new Date()));
+    };
+
+    updateClock();
+    const timer = window.setInterval(updateClock, 1000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     let lastTime = performance.now();
@@ -55,13 +74,21 @@ export default function HeroSection({ t, onOpenModal }) {
   return (
     <section
       ref={heroRef}
-      id="about"
+      id="hero"
       onPointerMove={handlePointerMove}
-      className="hero-canvas min-h-[100svh] border-b border-zinc-300/80 dark:border-zinc-700/80 flex flex-col justify-center items-center text-center w-full"
+      className="hero-canvas min-h-[calc(100svh+4px)] border-b-4 border-emerald-500 dark:border-emerald-400 flex flex-col justify-center items-center text-center w-full"
     >
       <div className="space-y-5 sm:space-y-6 w-full max-w-6xl mx-auto px-6 sm:px-10 md:px-12 flex flex-col items-center">
         <p className="hero-location text-[11px] sm:text-sm font-medium tracking-[0.14em] uppercase text-zinc-500 dark:text-zinc-400 px-2">
-          {t.location}
+          <span>{t.location}</span>
+          {localTime && (
+            <>
+              <span className="mx-2 text-emerald-500" aria-hidden="true">·</span>
+              <span className="font-mono font-bold tabular-nums text-zinc-800 dark:text-zinc-100">
+                {localTime}
+              </span>
+            </>
+          )}
           <span className="mx-2 text-emerald-500" aria-hidden="true">·</span>
           <span className="text-emerald-600 dark:text-emerald-400">{t.availability}</span>
         </p>
@@ -134,6 +161,52 @@ export default function HeroSection({ t, onOpenModal }) {
           </button>
         </div>
       </div>
+
+      {/* Indicador lateral derecho de scroll con flecha estilo dibujada a mano */}
+      <a
+        href="#about"
+        onClick={(e) => {
+          e.preventDefault();
+          if (heroRef.current) {
+            const navbarHeight = 68;
+            const borderThickness = 4;
+            const targetY = heroRef.current.offsetTop + heroRef.current.offsetHeight - borderThickness - navbarHeight;
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
+          }
+        }}
+        aria-label="Scroll down"
+        className="hero-scroll-hint group flex flex-col items-center gap-1.5 text-zinc-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors cursor-pointer select-none"
+      >
+        <span className="font-mono text-xs sm:text-sm tracking-widest uppercase -rotate-6 transition-transform group-hover:rotate-0">
+          scroll
+        </span>
+        <svg
+          width="48"
+          height="92"
+          viewBox="0 0 42 78"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-9 h-16 sm:w-11 sm:h-20 text-emerald-600 dark:text-emerald-400 overflow-visible"
+          aria-hidden="true"
+        >
+          {/* Trazo curvo con bucle estilo boceto a mano */}
+          <path
+            d="M22 3 C10 14, 7 32, 21 33 C32 34, 31 18, 20 21 C10 24, 15 48, 21 69"
+            stroke="currentColor"
+            strokeWidth="2.1"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {/* Punta de la flecha dibujada a mano */}
+          <path
+            d="M11 58 C15 64, 19 69, 21 73 C24 67, 28 62, 32 57"
+            stroke="currentColor"
+            strokeWidth="2.1"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </a>
     </section>
   );
 }

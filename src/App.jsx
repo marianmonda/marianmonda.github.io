@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import AboutSection from './components/AboutSection';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
@@ -83,6 +84,7 @@ export default function App() {
       <main className={`flex-1 w-full language-transition language-transition--${languagePhase}`}>
         <HeroSection t={t.hero} onOpenModal={() => setIsContactModalOpen(true)} />
         <div className="content-frame">
+          <AboutSection t={t.about} />
           <Experience t={t.experience} />
           <Projects t={t.projects} />
           <Skills t={t.skills} />

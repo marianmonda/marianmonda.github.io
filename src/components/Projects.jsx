@@ -4,14 +4,17 @@ import { GithubIcon } from './Icons';
 
 export default function Projects({ t }) {
   return (
-    <section id="projects" className="py-20 border-t border-zinc-200/60 dark:border-zinc-800/60">
+    <section id="projects" className="py-20">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-10">
-        <span className="font-mono text-emerald-600 dark:text-emerald-400 text-sm">{t.number}</span>
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-          {t.title}
-        </h2>
-        <div className="flex-1 h-[1px] bg-zinc-200 dark:bg-zinc-800 ml-4 max-w-xs"></div>
+      <div className="flex items-center justify-center gap-4 mb-10">
+        <div className="flex-1 h-[1px] bg-zinc-300 dark:bg-zinc-800 max-w-[70px] sm:max-w-[180px]"></div>
+        <div className="flex items-center gap-3 shrink-0">
+          <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400 text-lg sm:text-xl">{t.number}</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight text-zinc-900 dark:text-white">
+            {t.title}
+          </h2>
+        </div>
+        <div className="flex-1 h-[1px] bg-zinc-300 dark:bg-zinc-800 max-w-[70px] sm:max-w-[180px]"></div>
       </div>
 
       {/* Grid de proyectos */}

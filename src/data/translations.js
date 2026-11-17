@@ -22,8 +22,17 @@ export const translations = {
       ctaExperience: 'Experiencia',
       ctaContact: 'Contacto',
     },
-    experience: {
+    about: {
       number: '01.',
+      title: 'Sobre mí',
+      photoPlaceholder: 'Pon tu foto en public/profile.jpg',
+      paragraphs: [
+        'Estudiante de Ingeniería Informática en Almería apasionado por crear software sólido, escalable y bien diseñado.',
+        'Disfruto trabajando tanto en el backend como en el frontend, desarrollando desde plataformas full-stack y microservicios hasta integraciones con Inteligencia Artificial.',
+      ],
+    },
+    experience: {
+      number: '02.',
       title: 'Experiencia',
       role: 'Buscando Prácticas Profesionales / Desarrollador Junior',
       location: 'Almería / Remoto / Híbrido',
@@ -43,7 +52,7 @@ export const translations = {
       // previousDescription: 'Prácticas de 1 año desarrollando y manteniendo soluciones de software con metodologías ágiles.',
     },
     projects: {
-      number: '02.',
+      number: '03.',
       title: 'Proyectos',
       items: [
         {
@@ -73,7 +82,7 @@ export const translations = {
       ],
     },
     skills: {
-      number: '03.',
+      number: '04.',
       title: 'Lo que uso para construir',
       categories: [
         {
@@ -99,7 +108,7 @@ export const translations = {
       ],
     },
     footer: {
-      number: '04. ¿Hablamos?',
+      number: '05. ¿Hablamos?',
       title: 'Ponerse en contacto',
       description:
         'En búsqueda activa de prácticas profesionales. Si tienes una propuesta, una consulta técnica o simplemente quieres conectar, estaré encantado de hablar.',
@@ -154,8 +163,17 @@ export const translations = {
       ctaExperience: 'Experience',
       ctaContact: 'Contact',
     },
-    experience: {
+    about: {
       number: '01.',
+      title: 'About Me',
+      photoPlaceholder: 'Place your photo in public/profile.jpg',
+      paragraphs: [
+        'Computer Engineering student in Almería passionate about building solid, scalable, and well-crafted software.',
+        'I enjoy working across both backend and frontend, developing everything from full-stack platforms and microservices to Artificial Intelligence integrations.',
+      ],
+    },
+    experience: {
+      number: '02.',
       title: 'Experience',
       role: 'Seeking Software Engineering Internships / Junior Roles',
       location: 'Almería / Remote / Hybrid',
@@ -175,7 +193,7 @@ export const translations = {
       // previousDescription: '1-year internship developing and maintaining software solutions using agile methodologies.',
     },
     projects: {
-      number: '02.',
+      number: '03.',
       title: 'Projects',
       items: [
         {
@@ -205,7 +223,7 @@ export const translations = {
       ],
     },
     skills: {
-      number: '03.',
+      number: '04.',
       title: 'What I build with',
       categories: [
         {
@@ -231,7 +249,7 @@ export const translations = {
       ],
     },
     footer: {
-      number: "04. What's Next?",
+      number: "05. What's Next?",
       title: 'Get In Touch',
       description:
         'Actively seeking professional internships. Whether you have an opportunity, a technical question, or just want to connect, feel free to reach out.',

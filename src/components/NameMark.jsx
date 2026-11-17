@@ -119,13 +119,13 @@ function InteractivePath({ index, path, nodes, color, transform, extractNodes = 
 
   useEffect(() => {
     if (!registerTrigger) return;
-    registerTrigger(index, (holdMs = 1100) => {
+    registerTrigger(index, (holdMs = 1800) => {
       if (isHoveredRef.current) return;
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timelineRef.current?.timeScale(1.6).play();
+      timelineRef.current?.timeScale(0.75).play();
       timeoutRef.current = setTimeout(() => {
         if (!isHoveredRef.current) {
-          timelineRef.current?.timeScale(0.65).reverse();
+          timelineRef.current?.timeScale(0.45).reverse();
         }
       }, holdMs);
     });
@@ -186,7 +186,6 @@ export default function NameMark({ className = '' }) {
   useEffect(() => {
     const state = {
       randomTimer: null,
-      secondaryTimer: null,
       lastIndex: -1,
     };
 
@@ -196,8 +195,8 @@ export default function NameMark({ className = '' }) {
     const scheduleNext = () => {
       if (!isSmallOrTouch()) return;
 
-      // Intervalo aleatorio entre 650ms y 1450ms
-      const delay = 650 + Math.random() * 800;
+      // Intervalo mucho más pausado: entre 2800ms y 4800ms
+      const delay = 2800 + Math.random() * 2000;
       state.randomTimer = window.setTimeout(() => {
         if (isSmallOrTouch() && triggersRef.current.length > 0) {
           let nextIndex = Math.floor(Math.random() * letters.length);
@@ -206,18 +205,8 @@ export default function NameMark({ className = '' }) {
           }
           state.lastIndex = nextIndex;
 
-          const holdDuration = 950 + Math.random() * 550;
+          const holdDuration = 1800 + Math.random() * 700;
           triggersRef.current[nextIndex]?.(holdDuration);
-
-          // Ocasionalmente (~35% de las veces) activa una segunda letra cercana tras un breve desfase
-          if (Math.random() < 0.35) {
-            const secondIndex = (nextIndex + 1 + Math.floor(Math.random() * (letters.length - 2))) % letters.length;
-            state.secondaryTimer = window.setTimeout(() => {
-              if (isSmallOrTouch()) {
-                triggersRef.current[secondIndex]?.(holdDuration * 0.9);
-              }
-            }, 180);
-          }
         }
         scheduleNext();
       }, delay);
@@ -225,7 +214,6 @@ export default function NameMark({ className = '' }) {
 
     const handleResize = () => {
       window.clearTimeout(state.randomTimer);
-      window.clearTimeout(state.secondaryTimer);
       if (isSmallOrTouch()) {
         scheduleNext();
       }
@@ -238,7 +226,6 @@ export default function NameMark({ className = '' }) {
     window.addEventListener('resize', handleResize);
     return () => {
       window.clearTimeout(state.randomTimer);
-      window.clearTimeout(state.secondaryTimer);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
@@ -250,7 +237,7 @@ export default function NameMark({ className = '' }) {
   return (
     <svg
       viewBox="0 0 344 165"
-      className={`name-mark w-[88%] sm:w-[92%] md:w-full max-w-[680px] mx-auto h-auto overflow-visible select-none ${className}`}
+      className={`name-mark w-[88%] sm:w-[92%] md:w-full max-w-[min(680px,78vh)] mx-auto h-auto overflow-visible select-none ${className}`}
       role="img"
       aria-label="Marian Monda"
     >
