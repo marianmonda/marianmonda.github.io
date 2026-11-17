@@ -168,7 +168,7 @@ export default function HeroSection({ t, onOpenModal }) {
         onClick={(e) => {
           e.preventDefault();
           if (heroRef.current) {
-            const navbarHeight = 68;
+            const navbarHeight = 78;
             const borderThickness = 4;
             const targetY = heroRef.current.offsetTop + heroRef.current.offsetHeight - borderThickness - navbarHeight;
             window.scrollTo({ top: targetY, behavior: 'smooth' });

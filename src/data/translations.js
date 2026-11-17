@@ -109,10 +109,12 @@ export const translations = {
     },
     footer: {
       number: '05. ¿Hablamos?',
-      title: 'Ponerse en contacto',
+      titleLine1: 'Construyamos',
+      titleLine2: 'algo juntos',
       description:
-        'En búsqueda activa de prácticas profesionales. Si tienes una propuesta, una consulta técnica o simplemente quieres conectar, estaré encantado de hablar.',
+        'En búsqueda activa de prácticas profesionales. La forma más rápida de contactar conmigo es por correo o enviando un mensaje directo.',
       ctaButton: 'Enviar mensaje',
+      copied: '¡Copiado al portapapeles!',
       copyright: 'Marian Monda. Estudiante de Ingeniería Informática | Desarrollador Junior.',
     },
     contactModal: {
@@ -250,10 +252,12 @@ export const translations = {
     },
     footer: {
       number: "05. What's Next?",
-      title: 'Get In Touch',
+      titleLine1: "Let's build",
+      titleLine2: 'something',
       description:
-        'Actively seeking professional internships. Whether you have an opportunity, a technical question, or just want to connect, feel free to reach out.',
+        'Actively seeking professional internships. The fastest way to reach me is via email or by sending a direct message.',
       ctaButton: 'Send Message',
+      copied: 'Copied to clipboard!',
       copyright: 'Marian Monda. Computer Engineering Student | Junior Developer.',
     },
     contactModal: {
